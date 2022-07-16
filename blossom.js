@@ -3,7 +3,7 @@
 //
 // From https://github.com/mattkrick/EdmondsBlossom
 
-function blossom(edges, maxCardinality) {
+export function blossom(edges, maxCardinality) {
   if (edges.length === 0) {
     return edges;
   }
