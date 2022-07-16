@@ -6,7 +6,7 @@ import { makeRoundPairings } from "./pairings.js";
 
 async function readCsvFile(input) {
   const data = await fs.readFile(input);
-  const rows = parse(data);
+  const rows = parse(data, {from_line: 2});
   return rows;
 }
 
@@ -28,3 +28,5 @@ async function readRoundPairings() {
 var entrants = await readEntrants();
 var results = await readResults();
 var round_pairings = await readRoundPairings();
+console.log(round_pairings)
+console.log(entrants)
