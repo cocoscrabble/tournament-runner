@@ -129,7 +129,7 @@ function loserResults(game_result) {
   }
 }
 
-function makeResults(rows) {
+export function makeResults(rows) {
   // Convert each row into a GameResult object
   var out = []
   for (var entry of rows) {
@@ -166,7 +166,7 @@ function entrantFromRow(entry) {
   return {name: name, full_name: full_name, rating: rating, table: table, seed: seed}
 }
 
-function makeEntrants(rows) {
+export function makeEntrants(rows) {
   var entrants = {}
   var seeding = []
   var tables = {}
