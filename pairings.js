@@ -1,6 +1,8 @@
+// -----------------------------------------------------
+// Round pairing configuration.
+//
 
-
-function makeRoundPairings(rows) {
+export function makeRoundPairings(rows) {
   var quads = {}
   var round_robins = {}
   var rounds = []

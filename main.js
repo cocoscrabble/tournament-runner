@@ -1,6 +1,7 @@
 import * as fs from "fs/promises";
 import { parse } from "csv-parse/sync";
 import { makeEntrants, makeResults } from "./results.js";
+import { makeRoundPairings } from "./pairings.js";
 
 
 async function readCsvFile(input) {
@@ -19,7 +20,11 @@ async function readEntrants() {
   return makeEntrants(rows);
 }
 
+async function readRoundPairings() {
+  var rows = await readCsvFile("./round-pairings.csv");
+  return makeRoundPairings(rows);
+}
+
 var entrants = await readEntrants();
 var results = await readResults();
-console.log(entrants);
-console.log(results);
+var round_pairings = await readRoundPairings();
