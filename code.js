@@ -1,13 +1,3 @@
-function onOpen() {
-  // Get the UI object.
-  var ui = SpreadsheetApp.getUi();
-
-  // Create and add a named menu and its items to the menu bar.
-  ui.createMenu('Tournament')
-    .addItem('Calculate Standings and Pairings', 'calculateStandings')
-    .addToUi();
-}
-
 class Repeats {
   constructor() {
     this.matches = {}
@@ -27,52 +17,6 @@ class Repeats {
     var key = [name1, name2].sort();
     return this.matches[key] || 0;
   }
-}
-
-// -----------------------------------------------------
-// Read data from spreadsheet
-
-function collectResults(result_sheet) {
-  // Get the results range within the result sheet
-  var result_range = result_sheet.getRange("B2:H");
-  var results = result_range.getValues();
-  var last_row = result_sheet.getRange("B2").getDataRegion(SpreadsheetApp.Dimension.ROWS).getLastRow();
-  var data = results.slice(0, last_row - 1);
-  return makeResults(data);
-}
-
-function collectEntrants() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet();
-  var result_sheet = sheet.getSheetByName("Entrants");
-  var result_range = result_sheet.getRange("A2:E");
-  var results = result_range.getValues();
-  var last_row = result_sheet.getRange("A2").getDataRegion(SpreadsheetApp.Dimension.ROWS).getLastRow();
-  var data = results.slice(0, last_row - 1);
-  var entrants = makeEntrants(data);
-  console.log("Seeding:", entrants.seeding);
-  console.log("Entrants:", entrants.entrants);
-  console.log("Tables:", entrants.tables);
-  return entrants;
-}
-
-function collectRoundPairings() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet();
-  var result_sheet = sheet.getSheetByName("RoundPairing");
-  var result_range = result_sheet.getRange("A2:B");
-  var results = result_range.getValues();
-  var last_row = result_sheet.getRange("A2").getDataRegion(SpreadsheetApp.Dimension.ROWS).getLastRow();
-  var data = results.slice(0, last_row - 1);
-  return makeRoundPairings(data);
-}
-
-function collectFixedPairings() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet();
-  var result_sheet = sheet.getSheetByName("FixedPairing");
-  var result_range = result_sheet.getRange("A2:C");
-  var results = result_range.getValues();
-  var last_row = result_sheet.getRange("A2").getDataRegion(SpreadsheetApp.Dimension.ROWS).getLastRow();
-  var data = results.slice(0, last_row - 1);
-  return makeFixedPairings(data);
 }
 
 // -----------------------------------------------------
